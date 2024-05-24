@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>HW2</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <button @click="sortUp">down -> up</button>
+        <button @click="sortDown">up -> down</button>
+
+        <ul class="products">
+            <li class="product" v-for="item in products" :key="item.id">
+                <span>{{ item.name }} - </span>
+                <span>Price: {{ item.price }}</span>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                sortedProducts: [],
+                products: [
+                    { id: '1', name: 'grapes', price: 500, },
+                    { id: '2', name: 'peach', price: 200, },
+                    { id: '3', name: 'apple', price: 100, },
+                    { id: '4', name: 'pear', price: 300, },
+                ],
+            },
+            methods: {
+                sortUp() {
+                    this.products = this.products.sort((a, b) => (b.price < a.price ? 1 : -1));
+                },
+                sortDown() {
+                    this.products = this.products.sort((a, b) => (b.price > a.price ? 1 : -1));
+                },
+            },
+        });
+    </script>
+
+</body>
+
+</html>
